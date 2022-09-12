@@ -1,0 +1,69 @@
+Q)To calculate grade using procedure and function.
+
+PROCEDURE
+-------------------------------------------------------------
+
+create or replace procedure stu_grade(mark IN integer)
+is 
+grade varchar2(20);
+begin
+if (mark>=90 and mark<=100) THEN 
+grade:='A';
+elsif (mark>=80 and mark<=89) THEN 
+grade:='B';
+elsif (mark>=70 and mark<=79) THEN 
+grade:='C';
+elsif (mark>=60 and mark<=69) THEN 
+grade:='D';
+else 
+grade:='FAIL';
+end if;
+dbms_output.put_line('grade is '||grade);
+end stu_grade;
+
+begin
+stu_grade(90);
+end;
+
+FUNCTION
+-------------------------------------------------------------
+
+create or replace function gradecal(m IN integer)
+return varchar
+is 
+grade varchar2(20);
+BEGIN
+if (m>=90 and m<=100) THEN 
+grade:='A';
+elsif (m>=80 and m<=89) THEN 
+grade:='B';
+elsif (m>=70 and m<=79) THEN 
+grade:='C';
+elsif (m>=60 and m<=69) THEN 
+grade:='D';
+else 
+grade:='FAIL';
+end if;
+return grade;
+end;
+
+begin 
+dbms_output.put_line('grade is '||gradecal(98));
+end;
+
+Q)To display name of the employee who has maximum salary in department_id 100
+
+create or replace procedure emp_name(dept_id IN number)
+is
+e_name employees.first_name%TYPE;
+begin
+select first_name into e_name from employees where dept_id=department_id and 
+(salary)IN (select max(salary) from employees where dept_id=department_id);
+
+dbms_output.put_line(e_name);
+end;
+
+begin 
+emp_name(100);
+end;
+

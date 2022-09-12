@@ -1,0 +1,33 @@
+Q)perform calculation using plsql
+
+DECLARE 
+a number:=5;
+b number:=2;
+addition number:=a+b;
+subtraction number:=a-b;
+multiplication number:=a*b;
+division number:=a/b;
+BEGIN
+dbms_output.put_line('add:'||addition);
+dbms_output.put_line('sub:'||subtraction);
+dbms_output.put_line('mul:'||multiplication);
+dbms_output.put_line('div:'||division);
+END;
+
+
+Q)To display grade using plsql
+DECLARE
+mark number:=98;
+begin
+if (mark>=90 and mark<=100) THEN 
+dbms_output.put_line('grade is A');
+elsif (mark>=80 and mark<=89) THEN 
+dbms_output.put_line('grade is B');
+elsif (mark>=70 and mark<=79) THEN 
+dbms_output.put_line('grade is C ');
+else 
+dbms_output.put_line('FAIL ');
+end if;
+end;
+/
+
