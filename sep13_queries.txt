@@ -1,0 +1,38 @@
+Q)calculating bonus of employee no 205 using procedure
+---------------------------------------------------------------------------------------------------
+
+create or replace procedure bonuscal(emp_id IN number)
+is 
+bonus employees.salary%TYPE;
+begin
+select salary+nvl(commission_pct,0) into bonus from employees where employee_id=emp_id;
+dbms_output.put_line(bonus);
+end;
+
+begin
+bonuscal(205);
+end;
+-------------------------------------------------------------------------------------------------------
+Q)if job id is IT PROG salary will be increase by 1000 and if job id is SA REP salary will be increase by 700
+
+create or replace procedure emp_bonus(emp_id IN number)
+is
+bonus employees.salary%TYPE;
+jid employees.job_id%TYPE;
+begin
+select job_id into jid from employees where employee_id=emp_id;
+if (jid like 'IT_PROG') THEN 
+select salary+1000 into bonus from employees WHERE job_id=jid and employee_id=emp_id;
+dbms_output.put_line(bonus);
+elsif (jid like 'SA_REP') THEN 
+select salary+700 into bonus from employees where job_id=jid and employee_id=emp_id;
+dbms_output.put_line(bonus);
+else
+dbms_output.put_line('NO BONUS');
+end if;
+end;
+
+begin
+emp_bonus(150);
+end;
+
