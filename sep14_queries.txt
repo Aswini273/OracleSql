@@ -1,0 +1,32 @@
+To calculate bonus.If jobid id is IT_PROG salary will be increasing by 1000 and if the jobid is SA_REP then
+salary will be increasing by 700.
+------------------------------------------------------------------------------------------------------------
+
+declare
+jid emp_details.job_id%TYPE:=&jid;
+eid emp_details.employee_id%TYPE;
+erecord emp_details%ROWTYPE;
+  cursor ebonus is
+  select * from emp_details where job_id=jid;
+BEGIN
+open ebonus;
+  LOOP
+  fetch ebonus into erecord;
+  exit when ebonus%NOTFOUND;
+  if (erecord.job_id like 'IT_PROG') THEN 
+  dbms_output.put_line('Job id:'||erecord.job_id);
+   dbms_output.put_line('Employee_id:'||erecord.employee_id);
+   dbms_output.put_line('salary:'||erecord.salary);
+  dbms_output.put_line('bonus:'||(erecord.salary+1000));
+  elsif (erecord.job_id like 'SA_REP') THEN 
+  dbms_output.put_line('Job id:'||erecord.job_id);
+  dbms_output.put_line('Employee_id:'||erecord.employee_id);
+  dbms_output.put_line('salary:'||erecord.salary);
+  dbms_output.put_line('bonus:'||(erecord.salary+700));
+  else
+  dbms_output.put_line('NO BONUS');
+  end if;
+  end loop;
+close ebonus;
+end;
+
