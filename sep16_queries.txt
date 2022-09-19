@@ -1,0 +1,10 @@
+Q)create a trigger which stores information of the user and timestamp of operation updating salary in employees
+table.log this into separate table
+
+create or replace trigger emp1_update before update of salary on emp_1
+for each row
+begin
+insert into emp_1_update values(:old.employee_id,:old.first_name,:old.last_name,:old.email,
+:old.phone_number,:old.hire_date,:old.job_id,:old.salary,:new.salary,
+:old.commission_pct,:old.manager_id,:old.department_id,user,systimestamp);
+end; 
